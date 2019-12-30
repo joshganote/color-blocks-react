@@ -9,7 +9,17 @@ const pool = require('../modules/pool');
 // BASE MODE - make a route to get all saved color blocks
 router.get('/', (req, res) => {
     // the data from both the "colors" and "blocks" tables will be need
-    res.sendStatus(500);
+    const queryText = `SELECT * FROM "blocks"
+    JOIN "colors" ON "blocks"."color_id" = "colors"."id";`;
+
+    pool.query(queryText)
+    .then((response) => {
+        res.send(response.rows);
+    })
+    .catch((err) => {
+        console.log('error getting blocks', err);
+        res.sendStatus(500);
+    })
 });
 
 // BASE MODE - make a route to save new color blocks item
