@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import MapStoreProps from '../MapStoreProps/MapStoreProps';
 import Header from '../Header/Header';
 
+// Material-UI
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+
 class Swatches extends Component {
 
     componentDidMount() {
@@ -12,19 +16,17 @@ class Swatches extends Component {
     }
 
     render() {
-
-        const blockArray = this.props.store.blocks.map((item, index) => {
-            return (
-                <div key={index}>
-                    <p>{item.label}</p>
-                    <p>{item.hex_code}</p>
-                </div>
-            )
-        })
         return (
             <div>
                 <Header />
-                {blockArray}
+                    <Grid container spacing={3}>
+                        <Grid item xs={3}>
+                            <h4>Label: {this.props.store.blocks.label}</h4>
+                            <p>Hex Code: {this.props.store.blocks.hex_code}</p>
+                            <Button variant="contained" color="primary">Delete</Button>
+                        </Grid>
+                    </Grid>
+                    
             </div>
         )
     }
