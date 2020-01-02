@@ -5,16 +5,26 @@ import Header from '../Header/Header';
 
 class Swatches extends Component {
 
-    componentDidMount () {
+    componentDidMount() {
         this.props.dispatch({
             type: 'GET_BLOCKS'
         })
     }
 
     render() {
-        return(
+
+        const blockArray = this.props.store.blocks.map((item, index) => {
+            return (
+                <div key={index}>
+                    <p>{item.label}</p>
+                    <p>{item.hex_code}</p>
+                </div>
+            )
+        })
+        return (
             <div>
-                 <Header />
+                <Header />
+                {blockArray}
             </div>
         )
     }
