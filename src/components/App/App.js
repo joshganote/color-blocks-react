@@ -15,17 +15,15 @@ class App extends Component {
         return (
             <div>
                 <Router>
-                <Route exact path="/" component={Swatches} />
-                        <Route exact path="/colors/" component={Colors} />
+                    <Route exact path="/" component={Swatches} />
+                    <Route exact path="/colors/" component={Colors} />
                     <div>
-                        <ul>
-                            <li>
-                                <Link to="/">Swatches</Link>
-                            </li>
-                            <li>
-                                <Link to="/colors/">Colors</Link>
-                            </li>
-                        </ul>
+                        <div>
+                            <Link to="/">Swatches</Link>
+                        </div>
+                        <div>
+                            <Link to="/colors/">Colors</Link>
+                        </div>
                     </div>
                     <div className="container">
                         PAGE CONTENT
