@@ -11,11 +11,21 @@ class Swatches extends Component {
 
     componentDidMount() {
         this.props.dispatch({
-            type: 'GET_BLOCKS'
+            type: 'GET_BLOCKS',
+            type: 'GET_COLORS'
         })
     }
+    
 
     render() {
+
+        const colorArray = this.props.store.colors.map((item, index) =>{
+            return (
+                <div key={index}>
+                    
+                </div>
+            )
+        })
         return (
             <div>
                 <Header />
