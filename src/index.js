@@ -15,6 +15,7 @@ import logger from 'redux-logger';
 
 function* rootSaga() {
     yield takeEvery('GET_BLOCKS', getBlocks);
+    yield takeEvery('GET_COLORS', getColors);
 }
 
 // SAGA
@@ -33,10 +34,33 @@ function* getBlocks() {
     }
 }
 
+function* getColors() {
+    try {
+        const response = yield axios({
+            method: 'GET',
+            url: '/api/colors'
+        });
+        yield put({
+            type: 'SET_COLORS',
+            payload: response.data
+        });
+    } catch (err) {
+        console.log(`couldn't get colors`, err);
+    }
+}
 // REDUCER
 const blocks = (state = [], action) => {
     switch (action.type) {
         case 'SET_BLOCKS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const colors = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_COLORS':
             return action.payload;
         default:
             return state;
@@ -47,6 +71,7 @@ const sagaMiddleWare = createSagaMiddleWare();
 const store = createStore(
     combineReducers({
         blocks,
+        colors,
     }),
     applyMiddleware(logger, sagaMiddleWare)
 );
